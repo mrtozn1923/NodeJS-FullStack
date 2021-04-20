@@ -1,0 +1,20 @@
+[
+    {
+        "firstName":"Mert",
+        "lastName":"Özen",
+        "age":19,
+        "retired":false
+    },
+    {
+        "firstName":"Mehmet",
+        "lastName":"Özen",
+        "age":16,
+        "retired":false
+    },
+    {
+        "firstName":"Mesut",
+        "lastName":"Özen",
+        "age":48,
+        "retired":true
+    }
+]
