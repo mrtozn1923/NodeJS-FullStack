@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module</title>
+    <style>
+        body{
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container{
+            max-width: 1024px;
+        }
+        img{
+            max-width:  100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Script dosyalarındaki değişkenler global olarak tanımlanırsa aynı sayfa içerisinde kullanılan farklı script dosyalarından da erişilebilir durumda olacaktır. Bunun önüne geçmek için <b>"IIFE"</b> tanımlaması ile script dosyasına özel bir scope oluşturulabilir.</p>
+
+        <p>Dışarıya değerleri açabilmek için ise <b>"return"</b> anahtar ifadesini kullanmamız gerekecektir. Bu sayede dışarıdan erişilebilir olmasını istediğiniz değişkenleri veya fonksiyonlarıda tanımlayabilirsiniz.</p>
+
+        <p>NodeJS tarafında ise bu işlemi <b>"module"</b> kavramı ile gerçekleştirebilmekteyiz.</p>
+        <img src="GlobalModule.png" alt="">
+
+        <p>Global objesinin içerisinde bulunan <b>module</b> özelliğini <b>console.log(module)</b> şeklinde NodeJS üzerinde çalıştırdığınızda içeriğine hakim olabilirsiniz. Buradaki en önemli özellik <b>export</b> olacaktır.</p>
+        <img src="Module.PNG" alt="">
+
+        <p><b>IIFE</b> içerisinde bulunan değerleri <b>return</b> ile nasıl public hale getiriyorsak <b>module</b> kavramında da <b>exports</b> içerisine ekleyeceğiz.</p>
+        
+    </div>
+
+    <script src="scriptA.js"></script>
+    <script src="scriptB.js"></script>
+</body>
+</html>
