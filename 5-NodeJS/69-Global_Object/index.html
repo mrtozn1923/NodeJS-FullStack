@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Object</title>
+    <style>
+        body{
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .container{
+            padding: 10px;
+            max-width: 1024px;
+        }
+        img{
+            max-width: 800px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h4>Browser Window</h4>
+        <p>CMD(Terminal) üzerinde <b>"node scriptA.js"</b> şeklinde bir kod çalıştırdığınızda "window" objesi tanımlanamayacaktır. Çünkü "window" objesi sadece tarayıcılara özel bir objedir. NodeJS yani sunucu tarafında "window" objesini kullanamıyoruz.</p>
+    
+        <p>Console penceresinde yazdırılan window objesine bakıldığında firstName ve lastName değişkenlerini görüntüleyebilirsiniz. <u>Farklı</u> script dosyaları olsa bile aynı sayfaya dahil edildiği sürece tek bir <b>"window"</b> objesini kullanacaktır.</p>
+
+        <p>Ayrıca <b>scriptB.js</b> dosyasında <b>firstName</b> değişkenini kullanabildiğimize dikkat edin. Aynı sayfada her ikiside uygun sırada eklendiği sürece ve global kapsamda tanımlandığı sürece içerikler kullanılabilmektedir. Ancak <b>scriptA.js</b> dosyasından <b>scriptB.js</b> üzerinde bulunan değişkenler kullanılamaz. Çünkü <b>scriptB.js</b> daha aşağıda dahil edilmiştir.</p>
+        <img src="access.png" alt="">
+        <p>Aşağıdaki fonksiyonlara daha önce window objesinde tanımlandığı için ulaşabilmekteyiz.</p>
+        <ul>
+            <li>window.console.log</li>
+            <li>window.setInterval</li>
+            <li>window.setTimeout</li>
+            <li>...</li>
+        </ul>
+
+        <h4>NodeJS Global</h4>
+        <p>NodeJS üzerinde window objesi ile benzer mantıkta <b>"global"</b> objesi bulunmaktadır. Ancak buradaki global objesi ortak değişken tanımlamalarını içermez. Yani <b>scriptA.js</b> üzerinde tanımlı olan bir değişkene <b>scriptB.js</b> üzerinde  <b>"global"</b>objesi ile erişemeyiz.</p>
+        <p>Burada karşımıza <b>"module"</b>kavramı çıkıyor.</p>
+        <p>Global objesinde ortak olarak erişebileceğimiz özellikler elbette bulunmaktadır. Window objesindede bulunan bazı özellikler yine aşağıda ifade edildiği gibi <b>"global"</b> objesinde de bulunmaktadır.</p>
+        <ul>
+            <li>window.console.log</li>
+            <li>window.setInterval</li>
+            <li>window.setTimeout</li>
+            <li>...</li>
+        </ul>
+        <p><b>console.log(global)</b>kodunu scriptB.js dosyasına yazdıktan sonra <b>CMD</b> üzerinde <b>node scriptB.js</b> dediğiniz zaman objenin detaylarına erişebilirsiniz.</p>
+        <p><b>NOT:</b> Tarayıcı üzerindeki konsol penceresinde global objesi tanınmayacaktır. Çünkü global objesi NodeJS tarafında tanınmaktadır.</p>
+
+    </div>
+    
+
+    <script src="scriptA.js"></script>
+    <script src="scriptB.js"></script>
+</body>
+</html>
