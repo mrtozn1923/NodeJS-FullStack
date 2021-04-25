@@ -1,0 +1,94 @@
+NPM (Node Package Manager)
+----------------------------
+NPM kullanıcıların tek bir noktadan kullanmak istediği paketleri
+indirebileceği bir havuz sunar. Ayrıca projelerinizde paketlerin
+yönetimini sağlar. Kendi oluşturduğunuz paketleri yine NPM üzerinde
+yayınlayabilirsiniz.
+
+NPM yapısını kullanabilmek için NodeJS ile birlikte NPM sisteminin
+kurulması gerekmektedir. Eğer varsayılan kurulum yaptıysanız bu kurulum
+işlemi zaten gerçekleşmiştir. CMD üzerinde "npm -v" yazdığınızda
+versiyon numarası geliyorsa kurulum işlemi yapılmış demektir.
+
+Paketleri yönetmek için "package.json" adında bir dosyaya ihtiyacınız var.
+Bu dosyayı yine CMD üzerinden "npm init" diyerek kurabilirsiniz. Oluşturma
+esnasında bazı sorular soracaktır. Bu soruları ihtiyacınıza uygun şekilde
+doldurup package.json dosyasını oluşturabilirsiniz.
+
+NPM sisteminin en büyük avantajı büyük çaplı projelerde kullandığınız
+3.parti kütüphane ve dosyaları versiyonları ile tek bir noktadan kontrol
+edebiliyor olmanızdır. Bu sayede projeyi ilgilendiren tüm paketleri taşımak
+yerine "npm install" komutu ile "package.json" üzerindeki tanımlamalara göre
+tek hamlede yüklenmesini sağlayabilirsiniz.
+
+Varsayılan Yükleme
+------------------
+npm init --yes komutu ile varsayılan şekilde package.json dosyası oluşturulabilir.
+
+Paket Yükleme
+--------------
+npm install paketadi
+npm i paketadi
+
+Yükleme işleminden sonra "node_modules" adında bir klasör oluşturulacaktır. Bu klasör içerisinde dahil etmek istediğiniz kütüphaneyi(paketi) bulabilirsiniz.
+"package.json" dosyası içerisinde de "dependencies" adında yeni bir anahtar değer çifti üretilmiş oldu. Burada paket adı ve versiyon numarasını görebilirsiniz.
+
+Bu esnada "node_modules" klasörünü sildiğiniz zaman yüklemek için sadece "npm install" demeniz yeterli olacaktır. Tabi bir çok kütüphane veya paket yüklediğinizde bu işlem çok daha mantıklı ve anlaşılır olacaktır. Buradaki kilit nokta proje geliştirilirken kullanılan versiyonlara sadık kalarak bir yükleme işlemi yapılacak olmasıdır. Ayrıca github gibi ortamlara projenizi yüklerken "node_modules" klasörünü hariç tutabilme avantajınızın olmasıdır. İsteyen bir kişi github üzerinde projenizi indirip "npm install" dediği zaman bağımlılığın olduğu paketleri versiyonlarıyla, isimleriyle uğraşmadan tek hamlede indirebilecek olması en büyük kolaylıklardan birisidir.
+
+Versiyon bildirme
+-------------------
+Yükleme işleminde ayrıca versiyon bildirme imkanımızda bulunmaktadır.
+Örneğin, Jquery paketini yüklemek için "npm i jquery" dememiz yeterli olacaktır. Ancak burada güncel versiyon kurulacaktır. Özellikle versiyon bildirmek için "npm i jquery@2.2.7" gibi versiyon bildirmeniz gerekmektedir.
+
+dependencies & devDependencies
+-----------------------------
+"dependencies" anahtar ifadesi ile package.json üzerinde projenin bizzat bağımlı olduğu paketleri bildirir.
+
+"devDependencies" anahtar ifadesi ise package.json üzerinde sadece geliştirme esnasında gerekli olan paketleri bildirir. Yani projede canlıya alındığı zaman gerekli olmayan paketleri bildirir.
+
+Local Package & Global Package
+-------------------------------
+Eğer bir projeyi hazırlarken sadece geliştirme esnasında ihtiyacınız olan paketler varsa bunları global package yüklemesi ile çalıştığınız bilgisayara yükleyebilirsiniz. Böylece tekrar tekrar her projede indirmek zorunda kalmazsınız. Ancak projenin çalışabilmesi için olmazsa olmaz paketleri local package yüklemesi ile yani standart paket yüklemesi ile yüklerseniz sadece o projeye has paketler yüklenmiş olur ve proje ile taşınabilir. Yok ben global'e yükleyeceğim derseniz ozaman projeyi yayınlamak için sunucuya aktardığınızda projenin çalışmadığını göreceksiniz tabi bu senaryo yüklemeyi yaptığınız sunucuda gereksinim duyulan paketler yoksa geçerlidir. Bu nedenle en mantıklı ve doğru yöntem sadece geliştirme esnasında gerekli olan paketleri "devDependencies" altında ve "global" olarak tanımlamaktır. Projenin bizzat bağımlılığı olan paketleride "dependencies" altında "local" olarak yüklemektir.
+
+NOT: Global olarak yüklenmiş paketleri "package.json" üzerinde görüntüleyemezsiniz. Bu dosyaya işlenmez. Ayrıca projedeki "node_modules" altınada işlenmez. Bilgisayarınızda bulunan "node_modules" altında işlenir ve projelerden bağımsız olur, tekrar tekrar yüklemek zorunda kalmazsınız.
+
+Yükleme Komutları
+------------------
+npm i jquery   (local yükleme ve dependencies altına eklenir)
+npm i webpack --save-dev  (local yükleme ve devDependencies altına eklenir)
+npm i live-server --global (global yükleme)
+
+Global Package Listing
+----------------------
+Global paketleri listemek için "npm list -g" komutu kullanılabilir. Ancak bağımlı olan tüm paketleride listeleyeceğiz için karmaşaya sebebiyet verebilir.
+
+"npm list -g depth 0" komutu ile sadece paket isimlerini görüntülebilirsiniz.
+
+Semantic Version
+-----------------
+^4.20.12 -> major.minor.patch
+
+patch: hata düzeltmesi yapıldığında arttırılır (4.20.13)
+minor: yeni bir özellik eklenirse arttırılır (4.21.0)
+major: köklü bir değişiklik yapılırsa arttırılır (5.0.0)
+
+~ karakteri eklenirse "npm install" komutu sonrasında "patch" güncellemesi varsa bu güncellemeleri alarak ilgili versiyonu günceller.
+
+^ karakteri eklenirse "npm install" komutu sonrasında "minor" ve "patch" güncellemesi varsa bu güncellemeleri alarak ilgili versiyonu günceller.
+
+* karakteri eklenirse "npm install" komutu sonrası "major" güncelleme varsa bu güncellemeleri alarak ilgili versiyonu günceller.
+
+~4.3.2 şeklinde bir tanımlama var ve "4.3.8" güncellemesi varsa paket 4.3.8 olarak yüklenir.
+
+^4.3.2 şeklinde bir tanımlama var ve "4.4.1" güncellemesi varsa veya "4.3.8" güncellemesi varsa her iki güncellemede kabul edilir.
+
+* şeklinde bir tanımlama var ve "5.0.0" güncellemesi varsa veya diğer alt durumlar için güncelleme varsa bunlarıda alır. Ancak bu şeklinde bir güncelleme projede tutarsızlıklara sebebiyet verir. Eğer bizzat projenin olmazsa olmazı olan paketler varsa yani projenin bağımlı olduğu paketler varsa bu tanımlama "package.json" üzerinde kullanılmamalıdır.
+
+~4.3.2 yerine 4.3.x de kullanılabilir
+^4.3.2 yerine 4.x de kullanılabilir
+* yerine x de kullanılabilir
+
+Paket Kaldırma
+--------------------
+npm uninstall jquery
+npm uninstall webpack
