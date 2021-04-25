@@ -1,0 +1,38 @@
+NPM (Node Package Manager)
+----------------------------
+NPM kullanıcıların tek bir noktadan kullanmak istediği paketleri
+indirebileceği bir havuz sunar. Ayrıca projelerinizde paketlerin
+yönetimini sağlar. Kendi oluşturduğunuz paketleri yine NPM üzerinde
+yayınlayabilirsiniz.
+
+NPM yapısını kullanabilmek için NodeJS ile birlikte NPM sisteminin
+kurulması gerekmektedir. Eğer varsayılan kurulum yaptıysanız bu kurulum
+işlemi zaten gerçekleşmiştir. CMD üzerinde "npm -v" yazdığınızda
+versiyon numarası geliyorsa kurulum işlemi yapılmış demektir.
+
+Paketleri yönetmek için "package.json" adında bir dosyaya ihtiyacınız var.
+Bu dosyayı yine CMD üzerinden "npm init" diyerek kurabilirsiniz. Oluşturma
+esnasında bazı sorular soracaktır. Bu soruları ihtiyacınıza uygun şekilde
+doldurup package.json dosyasını oluşturabilirsiniz.
+
+NPM sisteminin en büyük avantajı büyük çaplı projelerde kullandığınız
+3.parti kütüphane ve dosyaları versiyonları ile tek bir noktadan kontrol
+edebiliyor olmanızdır. Bu sayede projeyi ilgilendiren tüm paketleri taşımak
+yerine "npm install" komutu ile "package.json" üzerindeki tanımlamalara göre
+tek hamlede yüklenmesini sağlayabilirsiniz.
+
+Varsayılan Yükleme
+------------------
+npm init --yes komutu ile varsayılan şekilde package.json dosyası oluşturulabilir.
+
+Paket Yükleme
+--------------
+npm install paketadi
+npm i paketadi
+
+Yükleme işleminden sonra "node_modules" adında bir klasör oluşturulacaktır. Bu klasör içerisinde dahil etmek istediğiniz kütüphaneyi(paketi) bulabilirsiniz.
+"package.json" dosyası içerisinde de "dependencies" adında yeni bir anahtar değer çifti üretilmiş oldu. Burada paket adı ve versiyon numarasını görebilirsiniz.
+
+Bu esnada "node_modules" klasörünü sildiğiniz zaman yüklemek için sadece "npm install" demeniz yeterli olacaktır. Tabi bir çok kütüphane veya paket yüklediğinizde bu işlem çok daha mantıklı ve anlaşılır olacaktır. Buradaki kilit nokta proje geliştirilirken kullanılan versiyonlara sadık kalarak bir yükleme işlemi yapılacak olmasıdır. Ayrıca github gibi ortamlara projenizi yüklerken "node_modules" klasörünü hariç tutabilme avantajınızın olmasıdır. İsteyen bir kişi github üzerinde projenizi indirip "npm install" dediği zaman bağımlılığın olduğu paketleri versiyonlarıyla, isimleriyle uğraşmadan tek hamlede indirebilecek olması en büyük kolaylıklardan birisidir.
+
+
