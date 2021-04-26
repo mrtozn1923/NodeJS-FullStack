@@ -1,0 +1,41 @@
+"npm i express" komutu ile son versiyon kurulabilir. 
+Ancak belirli bir versiyon kurulumu için "npm i express@4.x" şeklinde versiyon
+bildirilebilir.
+
+Yazılan npm scriptlerini tekrar tekrar çalıştırmamak için değişikliğin
+olduğu durumda yeniden çalıştırılması için "npm i nodemon -g" kurulumu yapılabilir.
+Global kurulum sayesinde her projede tekrar tekrar kurulum yapmak zorunda
+kalmayacağız.
+
+ExpressJS de content-type bölümü varsayılan olarak ekleniyor.
+
+----------------------------
+
+Middleware
+-----------
+Daha önce gelen isteğin "get/post" gibi ayrımını yapmıştık. Middleware
+mantığında bunlar tek bir çatı altında birleşir ve genel olarak "request"
+yani istek denir. ExpressJS üzerinde "use" metodu ile middleware oluşturabiliriz. Tabi bu get/post gibi metodları ayrıştıramadığımız anlamına gelmesin.
+
+Middleware işlemi tamamlandıktan sonra ne yapacağının söylenmesi gerekir.
+Burada karşımıza iki senaryo çıkıyor. Ya "response" döndüreceğiz ya da diğer middleware geçişi için "next()" metodunu kullanacağız. Her next metodunda diğer middleware yapısına geçiş yapılır.
+
+Terminal penceresinde "npm start" dedikten sonra tarayıcımızda "localhost:3000" adresine gidelim. Bu adrese gittiğimiz console penceresinde "middleware1 çalıştırıldı", "middleware2 çalıştırıldı" yazdıktan sonra geriye "send()" metodu ile bir cevap döndürülecektir. Örneğimizde bir "h1 etiketi" ile yazı döndürülüyor.
+
+//---------------------
+
+Routing
+---------
+
+Yönlendirmede middleware yapısı için kullanılan "use()"
+fonksiyonuna parametre olarak url bilgisi verilebilir.
+Ancak middleware sıralamasının önemli olduğunu unutmayın.
+"/" şeklinde bir tanımlama tüm url isteklerini karşılar. Bu nedenle
+en altta olması daha doğrudur.
+"/add-product" gibi özel tanımlamalar çalıştırılması sıralaması
+gözetilerek üstte yer almalıdır.
+Buradaki aslında temel sebep bir response döndürülmesidir. Eğer "/"
+isteğinde bir response döndürülmez ve diğer middleware üzerine geçiş sağlanırsa
+problem olmayacaktır.
+
+
