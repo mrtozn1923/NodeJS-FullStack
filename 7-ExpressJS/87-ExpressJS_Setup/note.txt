@@ -1,0 +1,10 @@
+"npm i express" komutu ile son versiyon kurulabilir. 
+Ancak belirli bir versiyon kurulumu için "npm i express@4.x" şeklinde versiyon
+bildirilebilir.
+
+Yazılan npm scriptlerini tekrar tekrar çalıştırmamak için değişikliğin
+olduğu durumda yeniden çalıştırılması için "npm i nodemon -g" kurulumu yapılabilir.
+Global kurulum sayesinde her projede tekrar tekrar kurulum yapmak zorunda
+kalmayacağız.
+
+ExpressJS de content-type bölümü varsayılan olarak ekleniyor.
