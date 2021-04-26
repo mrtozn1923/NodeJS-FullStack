@@ -38,4 +38,4 @@ Buradaki aslında temel sebep bir response döndürülmesidir. Eğer "/"
 isteğinde bir response döndürülmez ve diğer middleware üzerine geçiş sağlanırsa
 problem olmayacaktır.
 
-
+NOT: use metodu kullanıldığında 'url' şeklinde bildirilen parametrenin devamına bakmaz hepsini karşılar. Ancak get veya post metodları kullanıldığında 'url' birebir karşılanabilir olmalıdır. Yani belirtilen url'i karşılayacak bir middleware yoksa "404" döndürür.
