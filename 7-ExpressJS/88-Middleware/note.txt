@@ -15,7 +15,7 @@ Middleware
 -----------
 Daha önce gelen isteğin "get/post" gibi ayrımını yapmıştık. Middleware
 mantığında bunlar tek bir çatı altında birleşir ve genel olarak "request"
-yani istek denir. ExpressJS üzerinde "use" metodu ile middleware oluşturabiliriz.
+yani istek denir. ExpressJS üzerinde "use" metodu ile middleware oluşturabiliriz. Tabi bu get/post gibi metodları ayrıştıramadığımız anlamına gelmesin.
 
 Middleware işlemi tamamlandıktan sonra ne yapacağının söylenmesi gerekir.
 Burada karşımıza iki senaryo çıkıyor. Ya "response" döndüreceğiz ya da diğer middleware geçişi için "next()" metodunu kullanacağız. Her next metodunda diğer middleware yapısına geçiş yapılır.
