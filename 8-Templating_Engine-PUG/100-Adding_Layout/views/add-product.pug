@@ -1,0 +1,10 @@
+extends layouts/main-layout.pug
+block content 
+    form(action="/admin/add-product" method="POST")
+        .form-group.row
+            label(for="product-name").col-sm-2.col-form-label Name
+            .col-sm-10
+                input.form-control#product-name(type="text" name="productName")                        
+        .form-group.row
+            .col-sm-10.offset-sm-2
+                input(type="submit" value="Kaydet").btn.btn-primary
