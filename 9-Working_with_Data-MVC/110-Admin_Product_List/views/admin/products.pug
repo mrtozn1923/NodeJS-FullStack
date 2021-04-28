@@ -1,0 +1,23 @@
+extends ../layouts/main-layout.pug
+
+block content
+    .row
+        if products.length > 0
+            table.table.table-bordered
+                thead
+                    tr
+                        th Resim 
+                        th Ürün Adı
+                        th Fiyat
+                        th
+                    tbody
+                        each product in products 
+                            tr 
+                                td 
+                                    img(src=`/img/${product.imageUrl}` width='80')
+                                td #{product.name}
+                                td #{product.price} TL 
+                                td
+                                    a.btn.btn-primary.btn-sm(href='/details/1') Düzenle
+        else 
+            h1 Ürün Yok                
