@@ -1,0 +1,176 @@
+"npm i express" komutu ile son versiyon kurulabilir. 
+Ancak belirli bir versiyon kurulumu için "npm i express@4.x" şeklinde versiyon
+bildirilebilir.
+
+Yazılan npm scriptlerini tekrar tekrar çalıştırmamak için değişikliğin
+olduğu durumda yeniden çalıştırılması için "npm i nodemon -g" kurulumu yapılabilir.
+Global kurulum sayesinde her projede tekrar tekrar kurulum yapmak zorunda
+kalmayacağız.
+
+ExpressJS de content-type bölümü varsayılan olarak ekleniyor.
+
+----------------------------
+
+Middleware
+-----------
+Daha önce gelen isteğin "get/post" gibi ayrımını yapmıştık. Middleware
+mantığında bunlar tek bir çatı altında birleşir ve genel olarak "request"
+yani istek denir. ExpressJS üzerinde "use" metodu ile middleware oluşturabiliriz. Tabi bu get/post gibi metodları ayrıştıramadığımız anlamına gelmesin.
+
+Middleware işlemi tamamlandıktan sonra ne yapacağının söylenmesi gerekir.
+Burada karşımıza iki senaryo çıkıyor. Ya "response" döndüreceğiz ya da diğer middleware geçişi için "next()" metodunu kullanacağız. Her next metodunda diğer middleware yapısına geçiş yapılır.
+
+Terminal penceresinde "npm start" dedikten sonra tarayıcımızda "localhost:3000" adresine gidelim. Bu adrese gittiğimiz console penceresinde "middleware1 çalıştırıldı", "middleware2 çalıştırıldı" yazdıktan sonra geriye "send()" metodu ile bir cevap döndürülecektir. Örneğimizde bir "h1 etiketi" ile yazı döndürülüyor.
+
+//---------------------
+
+Routing
+---------
+
+Yönlendirmede middleware yapısı için kullanılan "use()"
+fonksiyonuna parametre olarak url bilgisi verilebilir.
+Ancak middleware sıralamasının önemli olduğunu unutmayın.
+"/" şeklinde bir tanımlama tüm url isteklerini karşılar. Bu nedenle
+en altta olması daha doğrudur.
+"/add-product" gibi özel tanımlamalar çalıştırılması sıralaması
+gözetilerek üstte yer almalıdır.
+Buradaki aslında temel sebep bir response döndürülmesidir. Eğer "/"
+isteğinde bir response döndürülmez ve diğer middleware üzerine geçiş sağlanırsa
+problem olmayacaktır.
+
+NOT: use metodu kullanıldığında 'url' şeklinde bildirilen parametrenin devamına bakmaz hepsini karşılar. Ancak get veya post metodları kullanıldığında 'url' birebir karşılanabilir olmalıdır. Yani belirtilen url'i karşılayacak bir middleware yoksa "404" döndürür.
+
+//----------------
+
+Body Parser
+------------
+Daha önce kullanıcıların formlar ile göndermiş olduğu verileri buffer aracılığıyla okumuştuk.
+ExpressJS ile bu işlemi "request.body" ile okuyabiliyoruz. Ancak body parser kullanılmazsa
+"undefined" olarak sonuç alırız. Bu nedenle body parser kullanılmalıdır.
+
+Express v4.16.0 ve üzeri versiyonlarda body parser paketini indirmeye gerek yok.
+app.use(express.urlencoded({extended:false}));
+
+Express v4.16.0 altındaki versiyonlarda body parser paketini "npm i body-parser" komutu
+ile kurmanız gerekmektedir.
+
+const bodyParser=require('body-parser');
+app.use(bodyParser.urlencoded({extended:false})); şeklinde kullanılabilir.
+
+NOT: Eğer sadece post işlemi için bir yapı çalıştırmak istiyorsanız bunun için daha önce
+yaptığımız gibi "app.post" metodunu kullanmalıyız. Sadece use kullandığımız zaman bir formdan
+veri okuma işlemi adres çubuğuna yazılan adres ilede çalıştırılabilir. Biz sadece post işlemi
+gerçekleştiğinde yani butona tıklandığın veri okuma işlemi yapılıp anasayfaya yönlendirilsin
+istiyorsak burada post işlemini dinlemeliyiz.
+
+//----------------------------------
+
+Installing PUG
+------------
+"npm install pug" komutunu terminal üzerinde çalıştırın.
+
+https://expressjs.com/en/4x/api.html#app.set
+
+ExpressJS de "set()" metodu ile "key","value" şeklinde uygulama
+içerisinde kullanılmak üzere genel tanımlamalar yapabilirsiniz. Template Engine
+tanımlaması için varsayılan olarak "view engine" şeklinde bir anahtar değer bulunmaktadır. Ayırca pug dosyalarını hangi klasöre aktaracağımızı bildirmek içinde "views" anahtar değeri kullanılmaktadır. "app.js" dosyamızda bu tanımlamaları gerçekleştirdik.
+
+Daha önce hazırlamış olduğumuz html dosyalarının pug uzantılı hallerini hazırlamamız
+gerekecektir. PUG için farklı bir söz dizimi bulunmaktadır. Burada girintilere çok dikkat etmeniz gerekir. Etiketler için kullanılan "<>" işaretleri kullanılmamaktadır. Öznitelikler(attributes) "()" içerisinde yazılır. Sınıflar parantezler içinde yazılmaz "." ile bitiştirilir. Id değerleride parantez içerisinde yazılmaz "#" ile bitiştirilir. Ayrıca programlama
+dillerinden gelen yapılarıda kullanabilmekteyiz.
+
+HTML dosyalarını gönderirken "sendFile" metodunun kullanmıştık şimdi ise "render" metodunu kullanacağız. Bu metod "view engine" olarak bildirilen aracı kullanacaktır.
+
+NOT: pug dosyalarının çıktısı yine html formatındadır. Ayrıca otomatik olarak sıkıştırılır bu işlem sayfa performansına olumlu yansır.
+
+Layout
+--------
+Sayfalarda ortak olan yapılar varsa bunun için layout oluşturabiliriz. Bu sayede kod tekrarından kaçınmış oluruz. Ayrıca ortak yapılarda yaptığımız değişiklikler
+tüm sayfalarda etkili olacaktır. Değiştirilebilir alanı bildirmek için "block" anahtar kelimesi kullanılmaktadır.
+"block styles" şeklinde bir kod eklediğimiz zaman farklılığın olabileceği yerler için bloklar oluşturabiliriz. Burada diğer sayfalar için özel "css" dosyası eklenebileceğini bildirmiş oluyoruz. İsimlendirmeyi istediğiniz gibi yapabilirsiniz. Tek şart tanımladığınız yer ile kullandığınız yerde aynı isim olmalıdır.
+
+Oluşturduğumuz layout'u dahil edebilmek için "extends" anahtar kelimesini kullanıyoruz. Daha sonra ilgili pug dosyasını bildiriyoruz.
+
+Dynamic Content
+----------------
+Statik sayfalarda tasarımı nasıl yaptıysak içerikte o şekilde kalıcı olacaktır.
+Ancak bu işlevsel bir yaklaşım değil. Bu nedenle sayfa içeriklerininde
+veri kümeleri ile desteklenerek üretilmesi daha doğru bir yaklaşımdır. Tabi
+böyle olmak zorunda değil ihtiyaca göre yapılar şekillenecektir.
+
+Layout üzerinde içerik değişikliğinin olacağı yerlerde #{variable} şeklinde bir tanımlama yaparak ilgili sayfalarda bu değeri güncelleyebilirsiniz.
+
+Daha önce render işlemi için ilgili pug dosyasını bildirmiştik. İkinci parametre olarak bir obje bildirerek layout üzerinde #{title} şeklinde tanımladığımız değişken adını ve değeri veriyoruz.
+res.render('index',{title:'Anasayfa'});
+
+PUG üzerinde tekrarlı yapıları "each product in products" bu şekilde kullanabilir.
+Tekrar etmesini istediğimiz yapıyı hemen altında 1 tab girinti ile bildirmeliyiz.
+
+Eğer gelen veriyi bir yapı ile birleştirecekseniz `/img/${product.image}` şeklinde ilgili sayfa üzerinde erişebilirsiniz. Normal kullanımda ise #{obj.value} şeklinde erişebilirsiniz.
+
+Partial Views
+-------------
+Tek bir dosya içerisinde içerikler büyüdükçe parçalamak daha doğru bir
+yaklaşımdır. Bunun için "include" anahtar kelimesini kullanarak "pug"
+dosyasının yerini bildirmemiz gerekmektedir. Burada yapılan işlem bir pug
+dosyasını parçalamaktan ibarettir. Kısacası parçala ve kolayca yönet
+mantığını kullanmaktayız.
+
+MIXIN
+-------
+Dinamik içerik sistemine sahip yapıların tekrar edebileceği yerler
+olabilir. Bu tekrarları kolay hale getirebilmek için "mixin" tanımlaması
+yapılabilir. Bu sayede bir javascript fonksiyonu tanımlar gibi tanımlama
+yapabiliriz. Dışarıdan parametre gönderebiliriz.
+
+Kullanırken +mixinadı() şeklinde bir çağırma yöntemi izlenmektedir.
+
+Conditional Statements
+-----------------------
+Programlama dillerinde olduğu gibi pug dosyalarında da koşullu yapılar
+kullanabiliriz. Bunun için "if/else" anahtar kelimelerinden yararlanabiliriz.
+
+MYSQL Database Connection
+--------------------------
+MySQL ile bağlantı kurabilmek için "mysql2" adında bir paket kurmamız gerekmektedir.
+"npm i mysql2@1.6.x" komutunu çalıştırın.
+
+MySQL kurulumu yaparken "authentication method" kısmını use "legacy" şeklinde seçin.
+
+SQL Query
+-------------
+    Select
+    ------
+Verileri çekmek için "select" anahtar kelimesi kullanmaktayız.
+
+Select * from products şeklinde bir kullanım yaptığımızda products tablosundaki
+tüm alanlar getirilecektir.
+
+Select * from products where price=5000 şeklinde bir kullanım yaptığımızda products tablosundaki fiyatı 5000 olan ürünlerin tüm alanları getirilecektir.
+
+Select * from products where name like '%Samsung%' şeklinde bir kullanım yaptığımızda ürünlerin isimlerinde 'Samsung' ifadesinin olduğu 
+tüm ürünlerin tüm alanları getirilir.
+
+    Insert
+    ------
+Tabloya yeni veriler eklemek için "insert" anahtar kelimesini kullanmaktayız.
+Obje üzerinden verileri ekleme işlemi aşağıdaki şekilde gerçekleştirebiliriz.
+ 
+ connection.execute('insert into products (name, price, imageUrl, description) values (?,?,?,?)',[this.name,this.price,this.imageUrl,this.description]);
+
+    Update
+    --------
+Tablo üzerindeki verileri güncellemek için "update" anahtar kelimesini kullanmaktayız. Güncelleme işleminde tüm verileri güncellememeye özen göstermelisiniz. Bu nedenle "where" kısmında koşulu bildirmelisiniz.
+
+connection.execute('UPDATE products SET products.name=?,products.price=?,products.imageUrl=?,products.description=? where products.id=?',[product.name,product.price,product.imageUrl,product.description,product.id]);
+
+    Delete
+   ---------
+Tablo üzerinde veriler silmek için "delete" anahtar kelimesini kullanmaktayız.
+Silme işleminde tüm verileri silmemeye özen göstermelisiniz. Sadece koşullara uyan
+verilerin silindiğie emin olmak için "where" kısmında silme koşulu bildirmelisiniz.
+
+connection.execute('DELETE from products where id=?'[id]);
+
+ 
+
