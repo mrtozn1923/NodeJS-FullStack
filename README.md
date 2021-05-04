@@ -15,6 +15,7 @@ Bu repository üzerinde NodeJS ile yapmış olduğum FullStack çalışmalarıma
 - Working with Data:MVC
 - SQL Database:MYSQL
 - SQL ORM:Sequelize
+- NoSQL Database: MongoDB
 - NoSQL ORM:Mongoose
 - Authentication
 - Validation & Error Handling
