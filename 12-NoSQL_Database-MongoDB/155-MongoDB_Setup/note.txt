@@ -1,0 +1,28 @@
+Çalışmalarınızı gerçekleştirirken MongoDB Atlas hizmetinden de faydalanabilirsiniz. Bu hizmet ücretsiz versiyonunda 512 MB
+disk alanı sunmaktadır. 
+
+1-MongoDB Atlas üzerinde bir üyelik oluşturun.
+2-Cloud Provider & Region üzerinde varsayılan seçimlerde bırakın.
+3-Cluster Name bilgisini isteğinize göre değiştirebilirsiniz.
+4-Create Cluster düğmesine tıklayın.
+5-Cluster yapısının oluşturulması 10-15 dk alabilir(Connect düğmesi
+aktif olana kadar bekleyin).
+6-Connect düğmesine tıklayın ve IP adresinizi whitelist
+üzerine eklenmesini sağlayın.
+7-Yeni bir user oluşturmanız gerekcektir. Burada kullanıcı adı ve 
+şifre(otomatik oluşturulabilir) bilgisini doldurun.
+8-Create MongoDB User düğmesine tıklayın.
+9-Bir bağlantı metodu seçmeniz gerekecektir. Bu metodlardan
+"connect your application" seçimini gerçekleştirin.
+10-Connection string değerini "Short SRV" olarak alın. Hemen altından
+SRV Adresini kopyalayın.
+11-Connection string kısmında bulunan parola kısmını oluşturulan
+parola ile değiştirin.
+12-Collection altında veritabanları listelenecektir.
+13-Compass ile erişim sağlamak için "Clusters" menüsüne tıklayın.
+14-Tekrar connect'e tıklayın.
+15-MongoDB Compass'ı seçin.
+16-Compass için versiyon seçimi yaptıktan sonra URI şeklindeki Connection String bilgisini alın.
+17-Compass programı açıksa otomatik olarak kopyalanan bilgi alınacaktır. Onayladığınız zaman bilgiler forma aktarılacaktır.
+18-Password bilgisini ekleyin ve connect düğmesine tıklayın.
+19-Uzaktaki bir MongoDB veritabanına bağlantı sağlanmış olacaktır.
