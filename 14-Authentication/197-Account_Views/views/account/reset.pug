@@ -1,0 +1,10 @@
+extends ../layouts/main-layout.pug
+block content 
+    form(action="/register" method="POST")
+        .form-group.row.justify-content-center
+            label(for="email").col-sm-2.col-form-label E-Posta:
+            .col-sm-4
+                input.form-control#email(type="text" name="email")                         
+        .form-group.row.justify-content-center
+            .col-sm-4.offset-sm-2
+                input(type="submit" value="Kaydet").btn.btn-primary
