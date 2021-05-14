@@ -1,0 +1,17 @@
+extends ../layouts/main-layout.pug
+block content 
+    form(action="/login" method="POST")
+        input(type="hidden" name="_csrf" value=`${csrfToken}`)
+        .form-group.row.justify-content-center
+            label(for="email").col-sm-2.col-form-label E-Posta:
+            .col-sm-4
+                input.form-control#email(type="text" name="email")                        
+        .form-group.row.justify-content-center
+            label(for="password").col-sm-2.col-form-label Şifre:
+            .col-sm-4
+                input.form-control#password(type="password" name="password")  
+        .form-group.row.justify-content-center
+            .col-sm-4.offset-sm-2
+                input(type="submit" value="Giriş Yap").btn.btn-primary
+    if errorMessage
+        div.alert.alert-danger.col-sm-6.offset-sm-3 !{errorMessage}
