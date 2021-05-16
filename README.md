@@ -34,7 +34,13 @@ Bu uygulama iki rol üzerine kurgulanmış (müşteri ve yönetici) bir yapını
 - MVC Design Pattern
 
 ## Uygulamayı Çalıştırma
-Uygulamayı çalıştırabilmek için bilgisayarınızda **NodeJS** ve **MongoDB** kurulu olmalıdır. Bunları kurduktan sonra aşağıdaki adımları ve işlemleri takip edebilirsiniz. Benim bilgisayarımda NodeJS v14.15.3 versiyonu kurulu. Ayrıca MongoDB 1.26.1 versiyonu kurulu. MongoDB için arayüz üzerinden kullanımı gerçekleştirebilmek için MongoDB Compass programınıda kurmayı unutmayın.
+Uygulamayı çalıştırabilmek için bilgisayarınızda **NodeJS** ve **MongoDB** kurulu olmalıdır. Bunları kurduktan sonra aşağıdaki adımları ve işlemleri takip edebilirsiniz. Benim bilgisayarımda NodeJS v14.15.3 versiyonu kurulu. Ayrıca MongoDB 4.4.5 ve MongoDB Compass 1.26.1 versiyonu kurulu. MongoDB için arayüz üzerinden kullanımı gerçekleştirebilmek için MongoDB Compass programınıda kurmayı unutmayın. MongoDB Kurulumu için  NodeJS-FullStack/12-NoSQL_Database-MongoDB/155-MongoDB_Setup/MongoDBSetup.png yolunu takip edebilirsiniz.
+
+NodeJS Yükleme Adresi
+>https://nodejs.org/en/
+
+MongoDB Yükleme Adresi
+>https://www.mongodb.com/try/download/community
 
 > 17-Final klasörünü indirdikten sonra terminal penceresinde uygulamanın ana dizinindeyken **npm install** komutunu kullanmanız tüm ilişkili dosyaların indirilmesi için yeterli olacaktır. Ancak uygulamayı geliştirirken değişikliğin olduğu durumda tekrar tekrar yeniden başlatmamak için global olarak bilgisayarıma **nodemon** paketini kurduğumu bilmeniz gerekiyor. Bu nedenle **npm install -g nodemon** komutu ile kurulumu gerçekleştirmelisiniz.
 
