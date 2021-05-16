@@ -59,7 +59,7 @@ Görselde de gösterildiği gibi uygulamanın ana dizinindeyken **npm start** ko
 
 MongoDB Compass üzerinde eğer aşağıdaki gibi **node-app** veritabanı oluşturulduysa herşey doğru çalışıyor demektir.
 
-![Screenshot](0-Content/3.png)
+![Screenshot](0-Content/3.PNG)
 
 Şimdi sıra geldi tarayıcı üzerinden uygulamaya erişmeye bunun için **localhost:3000** yazmanız yeterli olacaktır. Çünkü app.js üzerinde de belirttiğimiz gibi 3000 portu dinlenmektedir.
 
